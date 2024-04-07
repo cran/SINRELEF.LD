@@ -20,7 +20,7 @@ A vector containing the item loading estimates in the unidimensional factor-anal
 A vector containing the item residual standard deviations.
 }
   \item{THRES}{
-A vector containing the item thresholds. xx tambe pot ser matrix (for the graded model only).
+A vector containing the item thresholds.
 }
   \item{ncat}{
 Number of item response categories (for the graded model only).
