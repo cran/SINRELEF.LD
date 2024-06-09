@@ -2,10 +2,10 @@ Package: SINRELEF.LD
 Type: Package
 Title: Reliability and Relative Efficiency in Locally-Dependent
         Measures
-Version: 1.0.4
-Date: 2024-04-07
+Version: 1.1.0
+Date: 2024-06-09
 Authors@R: c(person("David", "Navarro-Gonzalez", role = c("aut", "cre"),
-                      email = "david.navarro@urv.cat"),
+                      email = "david.navarro@udl.cat"),
                person("Fabia", "Morales-Vives", role = "aut"),
                person("Pere J.", "Ferrando", role = "aut") )
 Description: Implements an approach aimed at assessing the accuracy and
@@ -22,16 +22,16 @@ Description: Implements an approach aimed at assessing the accuracy and
     ordered-categorical. A detailed guide can be obtained at the following url.
 URL: https://psico.fcep.urv.cat/utilitats/SINRELEF-LD/
 Depends: R (>= 3.5)
-Imports: stats
+Imports: stats, shiny, shinycssloaders, shinyjs
 License: GPL-3
 Encoding: UTF-8
 NeedsCompilation: no
 LazyData: true
 RoxygenNote: 6.0.1
-Packaged: 2024-04-07 17:48:15 UTC; Pepino
+Packaged: 2024-06-09 14:00:01 UTC; dnava
 Author: David Navarro-Gonzalez [aut, cre],
   Fabia Morales-Vives [aut],
   Pere J. Ferrando [aut]
-Maintainer: David Navarro-Gonzalez <david.navarro@urv.cat>
+Maintainer: David Navarro-Gonzalez <david.navarro@udl.cat>
 Repository: CRAN
-Date/Publication: 2024-04-07 22:33:11 UTC
+Date/Publication: 2024-06-09 20:40:06 UTC

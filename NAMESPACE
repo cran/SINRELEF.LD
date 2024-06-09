@@ -1,2 +1,6 @@
 exportPattern("^[[:alpha:]]+")
 importFrom("stats", "cor", "rnorm", "runif","pnorm", "quantile")
+importFrom("utils", "read.table")
+import('shiny')
+import('shinyjs', except = "runExample")
+import("shinycssloaders")

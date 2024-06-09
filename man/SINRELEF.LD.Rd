@@ -20,7 +20,7 @@ A vector containing the item loading estimates in the unidimensional factor-anal
 A vector containing the item residual standard deviations.
 }
   \item{THRES}{
-A vector containing the item thresholds.
+A vector containing the item thresholds. It is also possible to import a matrix (number of categories x number of items).
 }
   \item{ncat}{
 Number of item response categories (for the graded model only).
@@ -29,7 +29,7 @@ Number of item response categories (for the graded model only).
 The factor-analytic model used for calibrating the item set, being 'linear' for the standard FA model or 'graded' for the non-linear ordered-categorical FA model.
 }
   \item{doublet_list}{
-A vector containing the pairs of items with correlated specificities.
+A vector containing the pairs of items with correlated specificities. It is also valid to import a two column matrix, containing each pair of doublets.
 }
   \item{cor_doublet}{
 A vector containing the residual correlations corresponding to each pair, specified in doublet_list.

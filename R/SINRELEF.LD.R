@@ -37,6 +37,25 @@ SINRELEF.LD<-function(L, PSI, THRES, ncat, model = 'linear', doublet_list, cor_d
   if (missing(doublet_list)){
     stop("The argument doublet_list is not optional, please provide a valid vector containing all the doublets.")
   }
+  else {
+    buff1 <- size(doublet_list)[1]
+    buff2 <- size(doublet_list)[2]
+    if (buff1 == 1 && buff2 == 2){ # ok, just 1 doublet
+    }
+    if (buff1 == 2 && buff2 == 1){ # ok, just 1 doublet
+    }
+    if (min(buff1,buff2)==2){
+      # not a vector
+      if (buff1< buff2){
+        #2 vector structure
+        doublet_list = transpose(doublet_list)
+      }
+      # 2 column structure
+      doublet_list <- c(t(doublet_list))
+    }
+
+
+  }
 
   if (missing(cor_doublet)){
     stop("The argument doublet_list is not optional, please provide a valid vector containing the correlation of each doublet included in doublet_list.")
@@ -56,7 +75,7 @@ SINRELEF.LD<-function(L, PSI, THRES, ncat, model = 'linear', doublet_list, cor_d
   if (model == 'linear'){
     # The PSI diagonal elements are the square roots  of the residual variances
     psivec <- sqrt(PSI)
-    PSI <- diag(psivec)
+    PSI <- diag(as.vector(psivec))
 
     #Ree: Must be obtained from the "with" elements in the standardized model results. STDXY
 
@@ -190,17 +209,41 @@ SINRELEF.LD<-function(L, PSI, THRES, ncat, model = 'linear', doublet_list, cor_d
       j <- j +1
     }
 
+    # Check THRES.
     #THRES: MPLUS provides them but with an awkward ordering. The user should provide them as vector, and we are going to re-arrange them
-    THRES_matrix <- matrix(NA, nrow = ncat-1, ncol = m)
-    k <- 1
-    for (i in 1:m){
-      for (j in 1:(ncat-1)){
-        THRES_matrix[j,i] <- THRES[k]
-        k <- k+1
-      }
+
+    buff1 <- size(THRES)[1]
+    buff2 <- size(THRES)[2]
+
+    if (buff1 == 1){
+      THRES <- transpose(THRES)
     }
 
-    THRES <- THRES_matrix
+    if (min(buff1,buff2)==1){
+      # vector, re-arrange
+      THRES_matrix <- matrix(NA, nrow = ncat-1, ncol = m)
+      k <- 1
+      for (i in 1:m){
+        for (j in 1:(ncat-1)){
+          THRES_matrix[j,i] <- THRES[k]
+          k <- k+1
+        }
+      }
+
+      THRES <- THRES_matrix
+    }
+    else {
+      # matrix, check if everything is ok
+      if (buff2 < buff1){
+        THRES <- transpose(THRES)
+      }
+      if (buff1 != (ncat-1)){
+        stop("The thresholds (THRES) are not consistent with the number of categories (ncat).")
+      }
+      if (buff2 != m){
+        stop("The thresholds (THRES) are not consistent with the number of items.")
+      }
+    }
 
     OUT <- omegalduva(THRES, L, Ree, PSI, ncat, display = FALSE)
 
